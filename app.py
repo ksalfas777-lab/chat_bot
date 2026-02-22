@@ -34,7 +34,14 @@ app.add_middleware(
 prompt=ChatPromptTemplate.from_messages(
     [
 
-        ("system", "You are a diet specialist ,Give me the output accordingly"),
+        ("system",
+            "You are a helpful AI Study Assistant. "
+            "Answer academic and study-related questions clearly and simply. "
+            "Explain concepts step-by-step. "
+            "If needed, give examples. "
+            "If the question is unrelated to studies, politely redirect the user."
+            "If a user asks about entertainment, politics, or unrelated topics, "
+            "respond with: 'I am designed to assist with study-related questions only.'"),
         ("placeholder","{history}"),
         ("user","{questions}")
     ]
@@ -54,7 +61,7 @@ def get_history(user_id):
 
 @app.get("/")
 def home():
-    return {"message": "Welcome to the Diet Specialist chatbot API!"}
+    return {"message": "Welcome to the AI Study Assistant API!"}
 
 @app.post("/chat")
 def chat(request: ChatRequest):
